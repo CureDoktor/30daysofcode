@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>X Style Theme Switch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <main class="app">
+      <header class="topbar">
+        <button
+          id="themeCube"
+          class="theme-cube-wrap"
+          type="button"
+          aria-label="Rotate cube and switch to next theme"
+          title="Rotate + next theme"
+        >
+          <span class="theme-cube" aria-hidden="true">
+            <span class="cube-glow"></span>
+            <span class="cube-inner">
+              <img class="cube-logo" src="../x-logo.jpg" alt="" />
+            </span>
+          </span>
+          <span class="cube-readout">
+            <strong id="cubeCurrent">Default</strong>
+            <span id="cubeNext">Next: Soft Light</span>
+          </span>
+        </button>
+      </header>
+
+      <section class="hero">
+        <h1 class="title">Dark. Light. X smooth.</h1>
+        <p class="subtitle">
+          Crisp contrast, soft motion, and that premium social-app vibe.
+        </p>
+
+        <article class="card">
+          <div class="card-head">
+            <h2>For You</h2>
+            <span class="live-pill">Live</span>
+          </div>
+          <p class="card-copy">
+            If this vibe hits, follow me on X for daily UI drops, interactions,
+            and fresh front-end experiments.
+          </p>
+          <div class="card-tags" aria-label="Card highlights">
+            <span>Daily UI</span>
+            <span>X-style Motion</span>
+            <span>30 Days Coding</span>
+          </div>
+          <div class="card-foot">
+            <button class="cta" type="button">Follow on X</button>
+            <div class="theme-chip">
+              <span>Handle</span>
+              <strong>@curedoktore</strong>
+            </div>
+          </div>
+        </article>
+
+        <section class="settings-panel" aria-label="Theme settings">
+          <div class="settings-head">
+            <h3>Display</h3>
+            <p>Customize your view</p>
+          </div>
+
+          <div class="theme-options" id="themeOptions" role="radiogroup" aria-label="Theme options">
+            <label class="theme-option">
+              <input type="radio" name="themeMode" value="default" />
+              <span class="option-row">
+                <span class="option-icon icon-default" aria-hidden="true"></span>
+
+              </span>
+              <span class="option-name">Default</span>
+            </label>
+            <label class="theme-option">
+              <input type="radio" name="themeMode" value="soft-light" />
+              <span class="option-row">
+                <span class="option-icon icon-soft-light" aria-hidden="true"></span>
+              </span>
+              <span class="option-name">Soft Light</span>
+            </label>
+            <label class="theme-option">
+              <input type="radio" name="themeMode" value="dim" />
+              <span class="option-row">
+                <span class="option-icon icon-dim" aria-hidden="true"></span>
+              </span>
+              <span class="option-name">Dim</span>
+            </label>
+            <label class="theme-option">
+              <input type="radio" name="themeMode" value="lights-out" />
+              <span class="option-row">
+                <span class="option-icon icon-lights-out" aria-hidden="true"></span>
+              </span>
+              <span class="option-name">Lights Out</span>
+            </label>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

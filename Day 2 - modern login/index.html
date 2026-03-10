@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="bg-shape shape-1" aria-hidden="true"></div>
+      <div class="bg-shape shape-2" aria-hidden="true"></div>
+      <div class="bg-shape shape-3" aria-hidden="true"></div>
+
+      <section class="login-card">
+        <div class="login-content">
+          <header class="card-header">
+            <img src="./x-logo.jpg" alt="X logo" class="x-logo top-logo" />
+            <h1>Sign in to your X account</h1>
+         </header>
+
+          <form id="loginForm" class="login-form" novalidate>
+            <label class="field">
+              <span>Email</span>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="you@example.com"
+                autocomplete="email"
+                required
+              />
+            </label>
+
+            <label class="field">
+              <span>Password</span>
+              <div class="password-wrap">
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  placeholder="Enter your password"
+                  autocomplete="current-password"
+                  required
+                  minlength="6"
+                />
+                <button type="button" id="togglePassword" class="icon-btn" aria-label="Show password">
+                  👁
+                </button>
+              </div>
+            </label>
+
+            <div class="form-row">
+              <label class="remember">
+                <input type="checkbox" name="remember" class="remember-checkbox" />
+                <span>Remember me</span>
+              </label>
+              <a href="#" class="link">Forgot password?</a>
+            </div>
+
+            <button id="submitBtn" type="submit" class="submit-btn">
+              <span class="btn-text">Sign In</span>
+              <span class="spinner" aria-hidden="true"></span>
+            </button>
+          </form>
+
+          <p class="signup-line">
+            New here?
+            <a href="#" class="link">Create an account</a>
+          </p>
+        </div>
+
+        <div class="success-view" aria-live="polite">
+          <img src="./x-logo.jpg" alt="X logo" class="success-logo" />
+          <h2>Welcome, X user!</h2>
+          <p>You should now follow.</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

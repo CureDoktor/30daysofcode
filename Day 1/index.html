@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animated Button</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="card">
+        <h1 class="title">
+          <img src="../x-logo.jpg" alt="X logo" class="title__logo-img" />
+          <span>Animated Button</span>
+        </h1>
+        <p class="subtitle">X vibe: premium glow, smooth motion, clean focus.</p>
+        <p class="challenge-badge">1/30 Days Coding Challenge</p>
+
+        <div class="row">
+          <button class="btn btn--glow btn--primary" type="button" aria-live="polite">
+            <span class="btn__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="x-logo" focusable="false">
+                <path d="M5 4h4.1l3.55 5.1L17 4h2.9l-6.05 7.1L20 20h-4.1l-3.9-5.55L7.2 20H4.3l6.35-7.45L5 4z" />
+              </svg>
+            </span>
+            <span class="btn__label">Get Started</span>
+          </button>
+
+          <button class="btn btn--glow btn--soft" type="button">
+            <span class="btn__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="x-logo" focusable="false">
+                <path d="M5 4h4.1l3.55 5.1L17 4h2.9l-6.05 7.1L20 20h-4.1l-3.9-5.55L7.2 20H4.3l6.35-7.45L5 4z" />
+              </svg>
+            </span>
+            <span class="btn__label">Secondary</span>
+          </button>
+
+        </div>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
