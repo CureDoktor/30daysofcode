@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 4 - Glassmorphism Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-theme="neon-night">
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <main class="dashboard">
+    <aside class="glass sidebar">
+      <div class="brand-block">
+        <p class="day-tag">Day 4/10</p>
+        <h1>Glass Control</h1>
+        <p class="handle">@curedoktore</p>
+      </div>
+
+      <nav class="menu">
+        <button class="menu-item active" data-view="overview">Overview</button>
+        <button class="menu-item" data-view="analytics">Analytics</button>
+        <button class="menu-item" data-view="activity">Activity</button>
+        <button class="menu-item" data-view="settings">Settings</button>
+      </nav>
+
+      <div class="now-playing">
+        <p>Focus Mode</p>
+        <h3>Deep Work Session</h3>
+        <div class="wave">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+    </aside>
+
+    <section class="content">
+      <header class="glass topbar">
+        <div>
+          <p class="kicker" id="kicker-text">Welcome back</p>
+          <h2 id="title-text">Modern Glass Dashboard</h2>
+        </div>
+        <button class="ghost-btn" id="action-btn">+ New Widget</button>
+      </header>
+      <div class="view-stack">
+        <section class="view active" id="view-overview">
+          <section class="stats-grid">
+            <article class="glass stat-card reveal">
+              <p>Daily Visitors</p>
+              <h3 data-target="2640">0</h3>
+              <span class="trend up">+14.2%</span>
+            </article>
+            <article class="glass stat-card reveal">
+              <p>Revenue</p>
+              <h3 data-prefix="$" data-target="8240">0</h3>
+              <span class="trend up">+8.4%</span>
+            </article>
+            <article class="glass stat-card reveal">
+              <p>Bounce Rate</p>
+              <h3 data-suffix="%" data-target="22">0</h3>
+              <span class="trend down">-3.1%</span>
+            </article>
+          </section>
+
+          <section class="panels-grid">
+            <article class="glass panel large reveal">
+              <div class="panel-head">
+                <h3>Performance</h3>
+                <span class="chip">Live</span>
+              </div>
+              <div class="line-chart">
+                <span style="--d: 15%"></span>
+                <span style="--d: 42%"></span>
+                <span style="--d: 32%"></span>
+                <span style="--d: 70%"></span>
+                <span style="--d: 54%"></span>
+                <span style="--d: 78%"></span>
+                <span style="--d: 68%"></span>
+              </div>
+            </article>
+
+            <article class="glass panel reveal">
+              <div class="panel-head">
+                <h3>Tasks</h3>
+              </div>
+              <ul class="tasks">
+                <li><span></span>Design new dashboard hero</li>
+                <li><span></span>Refine card hover interactions</li>
+                <li><span></span>Ship micro animation polish</li>
+              </ul>
+            </article>
+
+            <article class="glass panel reveal">
+              <div class="panel-head">
+                <h3>Progress</h3>
+              </div>
+              <div class="progress-wrap">
+                <div class="ring">
+                  <svg viewBox="0 0 120 120">
+                    <circle cx="60" cy="60" r="48"></circle>
+                    <circle class="meter" cx="60" cy="60" r="48"></circle>
+                  </svg>
+                  <strong>74%</strong>
+                </div>
+                <p>UX iteration complete</p>
+              </div>
+            </article>
+          </section>
+        </section>
+
+        <section class="view" id="view-analytics">
+          <section class="stats-grid">
+            <article class="glass stat-card reveal">
+              <p>New Users</p>
+              <h3 data-target="1460">0</h3>
+              <span class="trend up">+10.4%</span>
+            </article>
+            <article class="glass stat-card reveal">
+              <p>Session Time</p>
+              <h3 data-target="8" data-suffix="m">0</h3>
+              <span class="trend up">+5.9%</span>
+            </article>
+            <article class="glass stat-card reveal">
+              <p>Conversion</p>
+              <h3 data-target="41" data-suffix="%">0</h3>
+              <span class="trend up">+2.6%</span>
+            </article>
+          </section>
+
+          <section class="panels-grid one-two">
+            <article class="glass panel large reveal">
+              <div class="panel-head">
+                <h3>Traffic Sources</h3>
+                <span class="chip">Realtime</span>
+              </div>
+              <div class="line-chart">
+                <span style="--d: 32%"></span>
+                <span style="--d: 58%"></span>
+                <span style="--d: 45%"></span>
+                <span style="--d: 82%"></span>
+                <span style="--d: 64%"></span>
+                <span style="--d: 72%"></span>
+                <span style="--d: 56%"></span>
+              </div>
+            </article>
+            <article class="glass panel reveal">
+              <div class="panel-head">
+                <h3>Top Channels</h3>
+              </div>
+              <ul class="tasks">
+                <li><span></span>Organic Search - 42%</li>
+                <li><span></span>Social Media - 27%</li>
+                <li><span></span>Direct - 18%</li>
+                <li><span></span>Referral - 13%</li>
+              </ul>
+            </article>
+          </section>
+        </section>
+
+        <section class="view" id="view-activity">
+          <section class="panels-grid one-two">
+            <article class="glass panel large reveal">
+              <div class="panel-head">
+                <h3>Recent Activity</h3>
+                <span class="chip">Now</span>
+              </div>
+              <ul class="timeline">
+                <li><span>09:18</span> New comment added on Dashboard v2.</li>
+                <li><span>09:43</span> Team synced design specs.</li>
+                <li><span>10:05</span> Micro-animation package updated.</li>
+                <li><span>10:37</span> Performance benchmark completed.</li>
+              </ul>
+            </article>
+            <article class="glass panel reveal">
+              <div class="panel-head">
+                <h3>Team Pulse</h3>
+              </div>
+              <div class="progress-list">
+                <div><p>Design</p><div class="bar"><span style="--w: 82%"></span></div></div>
+                <div><p>Frontend</p><div class="bar"><span style="--w: 76%"></span></div></div>
+                <div><p>QA</p><div class="bar"><span style="--w: 61%"></span></div></div>
+              </div>
+            </article>
+          </section>
+        </section>
+
+        <section class="view" id="view-settings">
+          <section class="panels-grid one-two">
+            <article class="glass panel large reveal">
+              <div class="panel-head">
+                <h3>Quick Preferences</h3>
+              </div>
+              <div class="toggles">
+                <label><span>Smooth Motion</span><input type="checkbox" checked /></label>
+                <label><span>Glass Blur Boost</span><input type="checkbox" checked /></label>
+                <label><span>Compact Widgets</span><input type="checkbox" /></label>
+                <label><span>Auto-refresh Data</span><input type="checkbox" checked /></label>
+              </div>
+            </article>
+            <article class="glass panel reveal">
+              <div class="panel-head">
+                <h3>Theme</h3>
+              </div>
+              <div class="theme-pills">
+                <button class="pill active" data-theme="neon-night">Neon Night</button>
+                <button class="pill" data-theme="ice-blue">Ice Blue</button>
+                <button class="pill" data-theme="aurora-mix">Aurora Mix</button>
+              </div>
+            </article>
+          </section>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
