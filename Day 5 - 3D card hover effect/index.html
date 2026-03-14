@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 5 - 3D Card Hover Effect</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="scene">
+    <header class="title-block">
+      <p class="day-tag">Day 5/30</p>
+      <h1>X Reactor Motion Lab</h1>
+      <p>Spring-based hover physics, smoother and more powerful.</p>
+      <p class="creator-tag">@curedoktore • 30 Days Coding Challenge</p>
+      <div class="intensity-switch" role="group" aria-label="Carousel speed">
+        <button class="level-btn" data-level="slow">Slow</button>
+        <button class="level-btn active" data-level="medium">Medium</button>
+        <button class="level-btn" data-level="fast">Fast</button>
+      </div>
+    </header>
+
+    <section class="x-stage">
+      <img class="x-logo-main" src="../x-logo.jpg" alt="X logo" />
+      <section class="card-grid">
+        <article class="card-wrap left">
+          <div class="card js-tilt" data-accent="#61d4ff" data-variant="orbit">
+            <span class="badge">Orbit</span>
+            <img class="x-mark" src="../x-logo.jpg" alt="" aria-hidden="true" />
+            <span class="fx fx-orbit-ring"></span>
+            <span class="shine"></span>
+            <div class="card-content">
+              <h2>Orbit Reactor</h2>
+              <p>Ultra smooth orbital inertia with liquid response.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="card-wrap center">
+          <div class="card js-tilt" data-accent="#8d7cff" data-variant="snap">
+            <span class="badge">Snap</span>
+            <img class="x-mark" src="../x-logo.jpg" alt="" aria-hidden="true" />
+            <span class="fx fx-snap-grid"></span>
+            <span class="shine"></span>
+            <div class="card-content">
+              <h2>Magnetic Core</h2>
+              <p>Powerful lock-on response with controlled spring bounce.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="card-wrap right">
+          <div class="card js-tilt" data-accent="#63ffba" data-variant="drift">
+            <span class="badge">Drift</span>
+            <img class="x-mark" src="../x-logo.jpg" alt="" aria-hidden="true" />
+            <span class="fx fx-drift-mist"></span>
+            <span class="shine"></span>
+            <div class="card-content">
+              <h2>Aero Drift</h2>
+              <p>Cinematic glide with soft delayed follow and deep parallax.</p>
+            </div>
+          </div>
+        </article>
+      </section>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

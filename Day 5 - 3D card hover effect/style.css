@@ -1,0 +1,442 @@
+:root {
+  --bg-1: #070b1a;
+  --bg-2: #121934;
+  --text: #eaf0ff;
+  --muted: #afbbda;
+  --card: rgba(255, 255, 255, 0.08);
+  --card-border: rgba(255, 255, 255, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Outfit", system-ui, sans-serif;
+  color: var(--text);
+  background: radial-gradient(circle at 20% 0, #1b2f73 0%, transparent 28%),
+    radial-gradient(circle at 82% 18%, #247b89 0%, transparent 25%),
+    linear-gradient(160deg, var(--bg-1), var(--bg-2));
+  display: grid;
+  place-items: center;
+  padding: 2rem 1rem;
+  animation: bgFlow 18s ease-in-out infinite alternate;
+}
+
+.scene {
+  width: min(1120px, 100%);
+  display: grid;
+  gap: 1.4rem;
+}
+
+.title-block {
+  text-align: center;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.day-tag {
+  color: #8de7ff;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.title-block h1 {
+  font-size: clamp(1.7rem, 4vw, 2.7rem);
+  font-weight: 800;
+}
+
+.title-block p {
+  color: var(--muted);
+}
+
+.creator-tag {
+  font-size: 0.86rem;
+  color: #92e8ff;
+  letter-spacing: 0.04em;
+}
+
+.intensity-switch {
+  margin-top: 0.5rem;
+  display: inline-flex;
+  justify-self: center;
+  padding: 0.35rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.06);
+  gap: 0.35rem;
+}
+
+.level-btn {
+  border: 0;
+  background: transparent;
+  color: #d6ddf2;
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 0.36rem 0.7rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.level-btn:hover {
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.level-btn.active {
+  color: #071327;
+  background: linear-gradient(90deg, #8ff5ff, #8ea6ff);
+}
+
+.x-stage {
+  position: relative;
+  min-height: 520px;
+  display: grid;
+  align-items: center;
+}
+
+.x-stage::before,
+.x-stage::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(96%, 920px);
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgba(141, 124, 255, 0.85), transparent);
+  filter: blur(0.4px);
+  transform-origin: center;
+  z-index: 0;
+}
+
+.x-stage::before {
+  transform: translate(-50%, -50%) rotate(24deg);
+}
+
+.x-stage::after {
+  transform: translate(-50%, -50%) rotate(-24deg);
+}
+
+.x-logo-main {
+  position: absolute;
+  width: clamp(140px, 20vw, 230px);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.11;
+  mix-blend-mode: screen;
+  filter: saturate(1.35) contrast(1.08);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.card-grid {
+  position: relative;
+  z-index: 1;
+  width: min(980px, 100%);
+  height: 470px;
+  margin-inline: auto;
+  pointer-events: none;
+}
+
+.card-wrap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(320px, 72vw);
+  max-width: 320px;
+  perspective: 1200px;
+  transform-origin: center;
+  will-change: transform, filter;
+  transition: filter 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: pointer;
+}
+
+.card {
+  --hovered: 0;
+  position: relative;
+  min-height: 260px;
+  border-radius: 22px;
+  border: 1px solid var(--card-border);
+  background: linear-gradient(170deg, rgba(255, 255, 255, 0.21), var(--card));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transform-style: preserve-3d;
+  will-change: transform;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.38);
+  transition: box-shadow 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  overflow: hidden;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.fx {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    color-mix(in srgb, var(--accent) 45%, white) 0%,
+    transparent 52%
+  );
+  opacity: calc(0.35 + var(--hovered) * 0.65);
+  transition: opacity 0.42s ease;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: auto -22% -37%;
+  height: 44%;
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in srgb, var(--accent) 44%, #edffff) 0%,
+    transparent 68%
+  );
+  opacity: calc(0.18 + var(--hovered) * 0.64);
+  filter: blur(22px);
+  transform: translateY(28px) scaleX(0.8);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  pointer-events: none;
+}
+
+.card:hover {
+  box-shadow: 0 28px 54px rgba(0, 0, 0, 0.46),
+    0 0 35px color-mix(in srgb, var(--accent) 32%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 46%, white);
+  filter: saturate(1.15);
+}
+
+.card:hover::after {
+  opacity: 0.85;
+  transform: translateY(10px) scaleX(1);
+}
+
+.badge {
+  position: absolute;
+  left: 14px;
+  top: 12px;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #081224;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 70%, #ffffff), #ffffff);
+  border-radius: 999px;
+  padding: 0.28rem 0.58rem;
+  z-index: 3;
+  transform: translateZ(70px);
+}
+
+.card[data-variant="orbit"] {
+  background: linear-gradient(168deg, rgba(132, 214, 255, 0.2), rgba(255, 255, 255, 0.06));
+}
+
+.fx-orbit-ring {
+  inset: 12%;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--accent) 55%, white);
+  opacity: 0.22;
+  transform: translateZ(36px) scale(0.84);
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.55s ease;
+}
+
+.card[data-variant="orbit"]:hover .fx-orbit-ring {
+  opacity: 0.72;
+  transform: translateZ(52px) scale(1.08);
+}
+
+.card[data-variant="snap"] {
+  background: linear-gradient(168deg, rgba(158, 140, 255, 0.24), rgba(255, 255, 255, 0.05));
+}
+
+.fx-snap-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.16) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0;
+  transform: translateZ(34px);
+  transition: opacity 0.35s ease;
+}
+
+.card[data-variant="snap"]:hover .fx-snap-grid {
+  opacity: 0.34;
+  animation: snapShift 0.7s steps(4) infinite;
+}
+
+.card[data-variant="drift"] {
+  background: linear-gradient(168deg, rgba(112, 255, 204, 0.2), rgba(255, 255, 255, 0.05));
+}
+
+.fx-drift-mist {
+  inset: -22% -18%;
+  background: radial-gradient(circle at 60% 62%, rgba(130, 255, 228, 0.45), transparent 58%);
+  opacity: 0.18;
+  filter: blur(18px);
+  transform: translateZ(28px) scale(0.92);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+
+.card[data-variant="drift"]:hover .fx-drift-mist {
+  opacity: 0.62;
+  transform: translateZ(52px) scale(1.08);
+  animation: mistFlow 2.8s ease-in-out infinite alternate;
+}
+
+.x-mark {
+  position: absolute;
+  right: -18px;
+  top: -24px;
+  width: 110px;
+  height: 110px;
+  border-radius: 20px;
+  object-fit: cover;
+  opacity: 0.24;
+  filter: saturate(1.4) contrast(1.05);
+  transform: translate3d(var(--logo-x, 0px), var(--logo-y, 0px), 48px) rotate(-12deg);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
+}
+
+.card:hover .x-mark {
+  opacity: 0.34;
+  transform: translate3d(var(--logo-x, 0px), var(--logo-y, 0px), 65px) rotate(-9deg);
+}
+
+.shine {
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 999px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.75) 0%,
+    rgba(255, 255, 255, 0.06) 38%,
+    transparent 72%
+  );
+  transform: translate3d(var(--shine-x, -90px), var(--shine-y, -90px), 45px);
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  opacity: 0.62;
+}
+
+.card-content {
+  height: 100%;
+  padding: 3.25rem 1.2rem;
+  display: grid;
+  align-content: end;
+  gap: 0.65rem;
+  transform: translate3d(var(--content-x, 0px), var(--content-y, 0px), 60px);
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card h2,
+.card p,
+.card .kicker {
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease;
+}
+
+.card:hover h2 {
+  transform: translateZ(78px) translateY(-3px);
+}
+
+.card:hover p {
+  transform: translateZ(64px);
+}
+
+.card:hover .kicker {
+  transform: translateZ(88px);
+}
+
+.kicker {
+  color: color-mix(in srgb, var(--accent) 74%, white);
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.card h2 {
+  font-size: 1.38rem;
+  font-weight: 700;
+}
+
+.card p {
+  color: #d4ddf4;
+  line-height: 1.4;
+}
+
+@keyframes bgFlow {
+  0% {
+    background-position: 0% 0%, 100% 20%, 50% 50%;
+  }
+  100% {
+    background-position: 20% 8%, 82% 32%, 50% 50%;
+  }
+}
+
+@keyframes snapShift {
+  from {
+    transform: translate3d(-3px, 0, 34px);
+  }
+  to {
+    transform: translate3d(3px, 0, 34px);
+  }
+}
+
+@keyframes mistFlow {
+  from {
+    filter: blur(16px);
+  }
+  to {
+    filter: blur(24px);
+  }
+}
+
+@media (max-width: 960px) {
+  .x-stage {
+    min-height: 500px;
+  }
+
+  .card-grid {
+    height: 430px;
+  }
+
+  .card {
+    min-height: 220px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card h2,
+  .card p,
+  .card .kicker,
+  .fx,
+  .x-mark,
+  .level-btn {
+    transition: none;
+    transform: none !important;
+  }
+}
