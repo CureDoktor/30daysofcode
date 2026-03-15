@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 6 - Smooth Page Transitions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="topbar glass">
+      <div class="identity">
+        <p class="day-tag">Day 6/30</p>
+        <h1>Smooth Page Transitions</h1>
+        <p class="handle">@curedoktore</p>
+      </div>
+
+      <div class="brand">
+        <img src="../x-logo.jpg" alt="X logo" />
+      </div>
+    </header>
+
+    <nav class="page-nav glass" aria-label="Page tabs">
+      <button class="nav-btn active" data-page="home">Home</button>
+      <button class="nav-btn" data-page="explore">Explore</button>
+      <button class="nav-btn" data-page="messages">Messages</button>
+      <button class="nav-btn" data-page="profile">Profile</button>
+    </nav>
+
+    <section class="stage glass">
+      <div class="pages">
+        <article class="page active" id="page-home">
+          <p class="kicker">Welcome back</p>
+          <h2>Home Timeline</h2>
+          <p>Ultra smooth layered transitions inspired by X motion language.</p>
+          <div class="chips">
+            <span>Realtime flow</span><span>Micro interactions</span><span>Depth motion</span>
+          </div>
+        </article>
+
+        <article class="page" id="page-explore">
+          <p class="kicker">Discover</p>
+          <h2>Explore Trends</h2>
+          <p>Fluid page swaps with blur, scale, and soft spring-driven entrance.</p>
+          <div class="chips">
+            <span>#ui</span><span>#animation</span><span>#frontend</span>
+          </div>
+        </article>
+
+        <article class="page" id="page-messages">
+          <p class="kicker">Connect</p>
+          <h2>Messages Hub</h2>
+          <p>Fast yet silky context switching with depth-aware card reveals.</p>
+          <div class="chips">
+            <span>Inbox</span><span>Mentions</span><span>Groups</span>
+          </div>
+        </article>
+
+        <article class="page" id="page-profile">
+          <p class="kicker">Your space</p>
+          <h2>Profile Studio</h2>
+          <p>Refined transitions focused on premium feel and visual continuity.</p>
+          <div class="chips">
+            <span>Portfolio</span><span>Highlights</span><span>Stats</span>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
