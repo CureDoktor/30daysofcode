@@ -2,12 +2,22 @@ const rawVideo = document.getElementById("camera-raw");
 const fxVideo = document.getElementById("camera-bg");
 const fxCanvas = document.getElementById("fx-canvas");
 const fxCtx = fxCanvas.getContext("2d");
+const navButtons = Array.from(document.querySelectorAll(".nav-hold-btn"));
+const views = Array.from(document.querySelectorAll(".view"));
+const gameScoreEl = document.getElementById("game-score");
+const gameBestEl = document.getElementById("game-best");
+const gameStateEl = document.getElementById("game-state");
 
 let cameraStream = null;
 let handsEngine = null;
 let handsReady = false;
 let handLoopRunning = false;
 let lastHandSentAt = 0;
+let activePage = "home";
+let holdButton = null;
+let holdStartAt = 0;
+let holdCooldownUntil = 0;
+let lastFrameAt = performance.now();
 
 const fingertip = {
   active: false,
@@ -20,7 +30,17 @@ const fingertip = {
 };
 
 const letters = [];
-const LETTER_SOURCE = "MIRRORWEBSITE";
+const LETTER_SOURCE = "MIRRORX0123456789";
+const HOLD_MS = 1000;
+const PLAYER_RADIUS = 12;
+
+const game = {
+  running: false,
+  score: 0,
+  best: 0,
+  spawnTimer: 0,
+  obstacles: [],
+};
 
 const getVideoLayout = () => {
   const vw = rawVideo.videoWidth || 1280;
@@ -63,9 +83,10 @@ const createLetters = () => {
 const drawLetters = () => {
   fxCtx.clearRect(0, 0, fxCanvas.width, fxCanvas.height);
 
+  const showFlow = activePage === "flow";
   const radius = 96;
   for (const letter of letters) {
-    if (fingertip.active) {
+    if (showFlow && fingertip.active) {
       const dx = letter.x - fingertip.x;
       const dy = letter.y - fingertip.y;
       const dist = Math.hypot(dx, dy);
@@ -92,16 +113,220 @@ const drawLetters = () => {
       letter.y = Math.max(8, Math.min(fxCanvas.height - 8, letter.y));
     }
 
-    fxCtx.font = `700 ${letter.size}px Outfit, sans-serif`;
-    fxCtx.fillStyle = `rgba(245, 248, 255, ${letter.alpha})`;
-    fxCtx.shadowBlur = 14;
-    fxCtx.shadowColor = "rgba(255,255,255,0.3)";
-    fxCtx.fillText(letter.char, letter.x, letter.y);
+    if (showFlow) {
+      fxCtx.font = `700 ${letter.size}px Outfit, sans-serif`;
+      fxCtx.fillStyle = `rgba(245, 248, 255, ${letter.alpha})`;
+      fxCtx.shadowBlur = 14;
+      fxCtx.shadowColor = "rgba(255,255,255,0.3)";
+      fxCtx.fillText(letter.char, letter.x, letter.y);
+    }
+  }
+
+  if (fingertip.active) {
+    fxCtx.beginPath();
+    fxCtx.arc(fingertip.x, fingertip.y, 11, 0, Math.PI * 2);
+    fxCtx.fillStyle = "rgba(165, 244, 255, 0.86)";
+    fxCtx.shadowBlur = 16;
+    fxCtx.shadowColor = "rgba(165, 244, 255, 0.8)";
+    fxCtx.fill();
   }
 };
 
-const animateFx = () => {
+const resetGame = () => {
+  game.running = true;
+  game.score = 0;
+  game.spawnTimer = 0;
+  game.obstacles = [];
+  if (gameStateEl) {
+    gameStateEl.textContent = "Game running - dodge the orbs.";
+  }
+  if (gameScoreEl) {
+    gameScoreEl.textContent = "0.0";
+  }
+  if (gameBestEl) {
+    gameBestEl.textContent = game.best.toFixed(1);
+  }
+};
+
+const updateGame = (dt) => {
+  if (activePage !== "game") {
+    return;
+  }
+
+  if (!game.running) {
+    return;
+  }
+
+  game.score += dt;
+  game.spawnTimer += dt;
+  if (gameScoreEl) {
+    gameScoreEl.textContent = game.score.toFixed(1);
+  }
+
+  const targetCount = Math.min(4 + Math.floor(game.score / 4), 16);
+  const spawnInterval = Math.max(0.28, 0.78 - game.score * 0.015);
+  if (game.spawnTimer >= spawnInterval && game.obstacles.length < targetCount) {
+    game.spawnTimer = 0;
+    const edge = Math.floor(Math.random() * 4);
+    const radius = 10 + Math.random() * 16;
+    const speed = 90 + Math.min(220, game.score * 8) + Math.random() * 70;
+    let x = 0;
+    let y = 0;
+    let vx = 0;
+    let vy = 0;
+
+    if (edge === 0) {
+      x = -radius;
+      y = Math.random() * fxCanvas.height;
+      vx = speed;
+      vy = (Math.random() - 0.5) * speed * 0.35;
+    } else if (edge === 1) {
+      x = fxCanvas.width + radius;
+      y = Math.random() * fxCanvas.height;
+      vx = -speed;
+      vy = (Math.random() - 0.5) * speed * 0.35;
+    } else if (edge === 2) {
+      x = Math.random() * fxCanvas.width;
+      y = -radius;
+      vy = speed;
+      vx = (Math.random() - 0.5) * speed * 0.35;
+    } else {
+      x = Math.random() * fxCanvas.width;
+      y = fxCanvas.height + radius;
+      vy = -speed;
+      vx = (Math.random() - 0.5) * speed * 0.35;
+    }
+
+    game.obstacles.push({ x, y, vx, vy, r: radius });
+  }
+
+  game.obstacles = game.obstacles.filter((orb) => {
+    orb.x += orb.vx * dt;
+    orb.y += orb.vy * dt;
+
+    const inside =
+      orb.x > -80 &&
+      orb.x < fxCanvas.width + 80 &&
+      orb.y > -80 &&
+      orb.y < fxCanvas.height + 80;
+
+    if (!inside) {
+      return false;
+    }
+
+    if (fingertip.active) {
+      const dx = orb.x - fingertip.x;
+      const dy = orb.y - fingertip.y;
+      const dist = Math.hypot(dx, dy);
+      if (dist < orb.r + PLAYER_RADIUS) {
+        game.running = false;
+        game.best = Math.max(game.best, game.score);
+        if (gameBestEl) {
+          gameBestEl.textContent = game.best.toFixed(1);
+        }
+        if (gameStateEl) {
+          gameStateEl.textContent = "Hit! Hold on Game button for 1s to restart.";
+        }
+        return false;
+      }
+    }
+
+    return true;
+  });
+
+  for (const orb of game.obstacles) {
+    fxCtx.beginPath();
+    fxCtx.arc(orb.x, orb.y, orb.r, 0, Math.PI * 2);
+    fxCtx.fillStyle = "rgba(255, 130, 130, 0.86)";
+    fxCtx.shadowBlur = 18;
+    fxCtx.shadowColor = "rgba(255,120,120,0.9)";
+    fxCtx.fill();
+  }
+};
+
+const setPage = (pageName) => {
+  if (pageName === activePage) {
+    return;
+  }
+
+  activePage = pageName;
+  navButtons.forEach((button) => {
+    const isActive = button.dataset.page === pageName;
+    button.classList.toggle("active", isActive);
+    if (isActive) {
+      button.classList.remove("switch-pop");
+      requestAnimationFrame(() => {
+        button.classList.add("switch-pop");
+      });
+      setTimeout(() => {
+        button.classList.remove("switch-pop");
+      }, 380);
+    }
+  });
+  views.forEach((view) => {
+    view.classList.toggle("active", view.id === `page-${pageName}`);
+  });
+
+  if (pageName === "game") {
+    resetGame();
+  }
+};
+
+const pickButtonUnderFinger = () => {
+  if (!fingertip.active) {
+    return null;
+  }
+
+  for (const button of navButtons) {
+    const rect = button.getBoundingClientRect();
+    const inside =
+      fingertip.x >= rect.left &&
+      fingertip.x <= rect.right &&
+      fingertip.y >= rect.top &&
+      fingertip.y <= rect.bottom;
+    if (inside) {
+      return button;
+    }
+  }
+  return null;
+};
+
+const updateHoldNav = (time) => {
+  const hovered = pickButtonUnderFinger();
+  if (!hovered || time < holdCooldownUntil) {
+    holdButton = null;
+    holdStartAt = 0;
+    navButtons.forEach((button) => button.style.setProperty("--hold-progress", "0"));
+    return;
+  }
+
+  if (holdButton !== hovered) {
+    holdButton = hovered;
+    holdStartAt = time;
+  }
+
+  const progress = Math.min((time - holdStartAt) / HOLD_MS, 1);
+  navButtons.forEach((button) => {
+    button.style.setProperty("--hold-progress", button === holdButton ? String(progress) : "0");
+  });
+
+  if (progress >= 1) {
+    setPage(holdButton.dataset.page);
+    holdCooldownUntil = time + 300;
+    holdButton = null;
+    holdStartAt = 0;
+    navButtons.forEach((button) => button.style.setProperty("--hold-progress", "0"));
+  }
+};
+
+const animateFx = (time) => {
+  const now = time || performance.now();
+  const dt = Math.min(0.05, (now - lastFrameAt) / 1000);
+  lastFrameAt = now;
+
+  updateHoldNav(time || performance.now());
   drawLetters();
+  updateGame(dt);
   requestAnimationFrame(animateFx);
 };
 
@@ -222,5 +447,8 @@ window.addEventListener("resize", () => {
 
 resizeFxCanvas();
 createLetters();
+if (gameBestEl) {
+  gameBestEl.textContent = game.best.toFixed(1);
+}
 animateFx();
 startCamera();

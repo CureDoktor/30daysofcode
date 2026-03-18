@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 9 - Gradient Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-glow glow-1"></div>
+  <div class="bg-glow glow-2"></div>
+
+  <main class="app">
+    <header class="topbar glass">
+      <div>
+        <p class="day-tag">Day 9/30</p>
+        <h1>Gradient Generator</h1>
+        <p class="handle">@curedoktore</p>
+      </div>
+      <img class="x-logo" src="../x-logo.jpg" alt="X logo" />
+    </header>
+
+    <section class="layout">
+      <aside class="panel glass">
+        <p class="panel-kicker">Controls</p>
+
+        <label class="field">
+          Angle
+          <input id="angle" type="range" min="0" max="360" value="135" />
+          <span id="angle-value">135deg</span>
+        </label>
+
+        <div class="colors">
+          <label class="color-field">Color A <input id="color-a" type="color" value="#8ea6ff" /></label>
+          <label class="color-field">Color B <input id="color-b" type="color" value="#8ff5ff" /></label>
+          <label class="color-field">Color C <input id="color-c" type="color" value="#8f8bff" /></label>
+        </div>
+
+        <div class="actions">
+          <button class="btn" id="random-btn">Random</button>
+          <button class="btn" id="shuffle-btn">Shuffle</button>
+          <button class="btn" id="animate-btn">Animate: Off</button>
+        </div>
+
+        <div class="presets">
+          <button class="preset" data-preset="sunset">Sunset</button>
+          <button class="preset" data-preset="neon">Neon</button>
+          <button class="preset" data-preset="aqua">Aqua</button>
+          <button class="preset" data-preset="violet">Violet</button>
+        </div>
+      </aside>
+
+      <section class="preview-wrap glass">
+        <p class="panel-kicker">Preview</p>
+        <div class="preview" id="preview">
+          <div class="grid-overlay"></div>
+          <strong>Smooth X Gradient</strong>
+        </div>
+
+        <div class="code-box">
+          <code id="css-output"></code>
+          <button class="btn copy-btn" id="copy-btn">Copy CSS</button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

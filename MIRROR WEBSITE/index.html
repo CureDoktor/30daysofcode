@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
     rel="stylesheet"
   />
   <link rel="stylesheet" href="style.css" />
@@ -17,6 +17,61 @@
   <video id="camera-bg" autoplay muted playsinline></video>
   <canvas id="fx-canvas" aria-hidden="true"></canvas>
   <div class="overlay"></div>
+
+  <main class="ui">
+    <header class="topbar">
+      <p class="eyebrow">MIRROR WEBSITE</p>
+      <h1>Finger Hold Navigation</h1>
+      <p class="hint">Hold finger on a button for 1 second.</p>
+    </header>
+
+    <nav class="hold-nav" aria-label="Hold navigation">
+      <button class="nav-hold-btn active" data-page="home">
+        Home
+      </button>
+      <button class="nav-hold-btn" data-page="flow">
+        Flow
+      </button>
+      <button class="nav-hold-btn" data-page="game">
+        Game
+      </button>
+      <button class="nav-hold-btn" data-page="about">
+        About
+      </button>
+    </nav>
+
+    <section class="views">
+      <article class="view active" id="page-home">
+        <p class="kicker">Live Mode</p>
+        <h2>Mirror camera stays always on.</h2>
+        <p>Use your index finger to hold on any nav button for one second and switch pages.</p>
+      </article>
+
+      <article class="view" id="page-flow">
+        <p class="kicker">Interactive Physics</p>
+        <h2>Random letters and numbers react to your finger.</h2>
+        <p>Move your finger through particles to push and scatter them in real time.</p>
+      </article>
+
+      <article class="view" id="page-game">
+        <p class="kicker">Finger Dodge</p>
+        <h2>Avoid the orbs as long as possible.</h2>
+        <p>Use your index finger as the player. Orbs get faster over time.</p>
+        <div class="game-hud">
+          <span>Score: <strong id="game-score">0.0</strong>s</span>
+          <span>Best: <strong id="game-best">0.0</strong>s</span>
+        </div>
+        <p class="game-state" id="game-state">Hold the "Game" nav with your finger to start.</p>
+      </article>
+
+      <article class="view" id="page-about">
+        <p class="kicker">Gesture UX</p>
+        <h2>No click navigation.</h2>
+        <p>Navigation is intentionally locked to hold-gesture interaction only.</p>
+      </article>
+    </section>
+  </main>
+
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
   <script src="script.js"></script>
