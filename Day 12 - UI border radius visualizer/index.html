@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 12 - UI Border Radius Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ambient ambient-1"></div>
+  <div class="ambient ambient-2"></div>
+
+  <main class="app">
+    <header class="topbar glass">
+      <div>
+        <p class="day-tag">Day 12/30</p>
+        <h1>UI Border Radius Visualizer</h1>
+        <p class="handle">@curedoktore</p>
+      </div>
+
+      <div class="x-badge" aria-label="X motif">
+        <img src="../x-logo.jpg" alt="X logo" />
+      </div>
+    </header>
+
+    <section class="layout">
+      <aside class="panel glass">
+        <p class="panel-kicker">Controls</p>
+
+        <label class="field">
+          Top-left
+          <input id="tl" type="range" min="0" max="150" value="30" />
+          <span id="tl-value">30px</span>
+        </label>
+
+        <label class="field">
+          Top-right
+          <input id="tr" type="range" min="0" max="150" value="64" />
+          <span id="tr-value">64px</span>
+        </label>
+
+        <label class="field">
+          Bottom-right
+          <input id="br" type="range" min="0" max="150" value="24" />
+          <span id="br-value">24px</span>
+        </label>
+
+        <label class="field">
+          Bottom-left
+          <input id="bl" type="range" min="0" max="150" value="86" />
+          <span id="bl-value">86px</span>
+        </label>
+
+        <label class="field check">
+          <input id="lock-all" type="checkbox" />
+          Lock all corners together
+        </label>
+
+        <div class="colors">
+          <label class="color-field">Shape color <input id="shape-color" type="color" value="#7d8cff" /></label>
+          <label class="color-field">Glow color <input id="glow-color" type="color" value="#52f3ff" /></label>
+          <label class="color-field">Canvas color <input id="canvas-color" type="color" value="#0d1429" /></label>
+        </div>
+
+        <div class="actions">
+          <button class="btn" id="preset-organic">Organic</button>
+          <button class="btn" id="preset-card">Card UI</button>
+          <button class="btn" id="preset-pill">Pill</button>
+          <button class="btn" id="random-btn">Randomize</button>
+        </div>
+      </aside>
+
+      <section class="preview-wrap glass">
+        <p class="panel-kicker">Live Preview</p>
+
+        <div class="preview" id="preview">
+          <div class="preview-grid"></div>
+          <div class="shape" id="shape">
+            <span>radius</span>
+          </div>
+
+          <span class="corner-label top-left">TL</span>
+          <span class="corner-label top-right">TR</span>
+          <span class="corner-label bottom-right">BR</span>
+          <span class="corner-label bottom-left">BL</span>
+        </div>
+
+        <div class="code-box">
+          <code id="css-output"></code>
+          <button class="btn copy-btn" id="copy-btn">Copy CSS</button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
