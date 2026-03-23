@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 14 - UI Component Preview Playground</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ambient ambient-1"></div>
+  <div class="ambient ambient-2"></div>
+
+  <main class="app">
+    <header class="topbar glass">
+      <div>
+        <p class="day-tag">Day 14/30</p>
+        <h1>UI Component Preview Playground</h1>
+        <p class="handle">@curedoktore</p>
+      </div>
+      <div class="x-badge" aria-label="X motif">
+        <img src="../x-logo.jpg" alt="X logo" />
+      </div>
+    </header>
+
+    <section class="layout">
+      <aside class="panel glass">
+        <p class="panel-kicker">Builder Controls</p>
+
+        <label class="field">
+          Component
+          <select id="component-type">
+            <option value="button">Button</option>
+            <option value="card">Card</option>
+            <option value="input">Input</option>
+            <option value="badge">Badge</option>
+          </select>
+        </label>
+
+        <label class="field">
+          Size
+          <input id="size" type="range" min="40" max="220" value="120" />
+          <span id="size-value">120px</span>
+        </label>
+
+        <label class="field">
+          Radius
+          <input id="radius" type="range" min="0" max="80" value="18" />
+          <span id="radius-value">18px</span>
+        </label>
+
+        <label class="field">
+          Border width
+          <input id="border" type="range" min="0" max="6" value="1" />
+          <span id="border-value">1px</span>
+        </label>
+
+        <label class="field">
+          Shadow intensity
+          <input id="shadow" type="range" min="0" max="70" value="30" />
+          <span id="shadow-value">30</span>
+        </label>
+
+        <label class="field check">
+          <input id="glass" type="checkbox" />
+          Glass mode
+        </label>
+
+        <div class="colors">
+          <label class="color-field">Primary <input id="primary" type="color" value="#7d8cff" /></label>
+          <label class="color-field">Accent <input id="accent" type="color" value="#52f3ff" /></label>
+          <label class="color-field">Text <input id="text-color" type="color" value="#f6f9ff" /></label>
+          <label class="color-field">Canvas <input id="canvas" type="color" value="#0d1429" /></label>
+        </div>
+
+        <div class="actions">
+          <button class="btn" id="preset-neon">Neon X</button>
+          <button class="btn" id="preset-clean">Clean UI</button>
+          <button class="btn" id="preset-cyber">Cyber</button>
+          <button class="btn" id="random-btn">Randomize</button>
+        </div>
+      </aside>
+
+      <section class="preview-wrap glass">
+        <p class="panel-kicker">Live Component Stage</p>
+
+        <div class="preview" id="preview">
+          <div class="preview-grid"></div>
+          <div class="component-shell">
+            <div class="component live-button" id="component"></div>
+          </div>
+        </div>
+
+        <div class="code-box">
+          <code id="css-output"></code>
+          <button class="btn copy-btn" id="copy-css-btn">Copy CSS</button>
+        </div>
+
+        <div class="code-box secondary">
+          <code id="html-output"></code>
+          <button class="btn copy-btn" id="copy-html-btn">Copy HTML</button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
