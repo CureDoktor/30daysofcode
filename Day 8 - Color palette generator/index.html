@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Palette Generator — Day 8</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <main class="page">
+      <header class="topbar">
+        <div class="brand">
+          <img src="../x-logo.jpg" alt="X logo" class="brand__logo" />
+          <div class="brand__text">
+            <span class="brand__kicker">Day 8 / 30 Days</span>
+            <h1 class="brand__title">Color Palette Generator</h1>
+          </div>
+        </div>
+      </header>
+
+      <section class="palette-section" aria-labelledby="palette-heading">
+        <h2 id="palette-heading" class="sr-only">Generated palette</h2>
+        <div class="palette-card">
+          <div class="palette-swatches" id="swatches">
+            <div class="swatch" data-hex="#1d9bf0" style="--swatch-color: #1d9bf0" tabindex="0">
+              <span class="swatch__hex">#1d9bf0</span>
+              <span class="swatch__copy" aria-hidden="true">Copy</span>
+            </div>
+            <div class="swatch" data-hex="#0ea5e9" style="--swatch-color: #0ea5e9" tabindex="0">
+              <span class="swatch__hex">#0ea5e9</span>
+              <span class="swatch__copy" aria-hidden="true">Copy</span>
+            </div>
+            <div class="swatch" data-hex="#38bdf8" style="--swatch-color: #38bdf8" tabindex="0">
+              <span class="swatch__hex">#38bdf8</span>
+              <span class="swatch__copy" aria-hidden="true">Copy</span>
+            </div>
+            <div class="swatch" data-hex="#7dd3fc" style="--swatch-color: #7dd3fc" tabindex="0">
+              <span class="swatch__hex">#7dd3fc</span>
+              <span class="swatch__copy" aria-hidden="true">Copy</span>
+            </div>
+            <div class="swatch" data-hex="#bae6fd" style="--swatch-color: #bae6fd" tabindex="0">
+              <span class="swatch__hex">#bae6fd</span>
+              <span class="swatch__copy" aria-hidden="true">Copy</span>
+            </div>
+          </div>
+          <div class="palette-actions">
+            <button type="button" class="btn-generate" id="btnGenerate">
+              <span class="btn-generate__text">Generate palette</span>
+              <span class="btn-generate__icon" aria-hidden="true">↻</span>
+            </button>
+            <p class="palette-hint">Click a swatch to copy hex</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <span>8/30 — Color palette generator · <strong>@curedoktore</strong></span>
+      </footer>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 13 — Design token generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <main class="app">
+      <header class="topbar glass">
+        <div class="topbar__left">
+          <p class="day-tag">Day 13/30</p>
+          <h1>Design token generator</h1>
+          <p class="handle">@curedoktore</p>
+        </div>
+        <img class="x-logo" src="../x-logo.jpg" alt="X logo" />
+      </header>
+
+      <section class="layout">
+        <aside class="panel glass">
+          <p class="panel-kicker">Controls</p>
+
+          <div class="controls">
+            <label class="field">
+              Accent hue (X blue)
+              <input id="hue" type="range" min="185" max="230" value="203" />
+              <span class="value" id="hue-value">203</span>
+            </label>
+
+            <label class="field">
+              Spacing base (px)
+              <input id="space-base" type="range" min="4" max="12" step="1" value="4" />
+              <span class="value" id="space-base-value">4px</span>
+            </label>
+
+            <label class="field">
+              Radius scale
+              <input id="radius-scale" type="range" min="0.75" max="1.25" step="0.05" value="1" />
+              <span class="value" id="radius-scale-value">1</span>
+            </label>
+
+            <label class="field">
+              Type base (px)
+              <input id="type-base" type="range" min="14" max="18" step="1" value="16" />
+              <span class="value" id="type-base-value">16px</span>
+            </label>
+
+            <label class="field">
+              Shadow strength
+              <input id="shadow-strength" type="range" min="0.35" max="1" step="0.05" value="0.65" />
+              <span class="value" id="shadow-strength-value">0.65</span>
+            </label>
+          </div>
+
+          <div class="actions">
+            <button class="btn" type="button" data-preset="x-default">X default</button>
+            <button class="btn" type="button" data-preset="compact">Compact</button>
+            <button class="btn" type="button" data-preset="comfortable">Comfortable</button>
+          </div>
+
+          <div class="actions actions--second">
+            <button class="btn ghost" type="button" id="randomize">Randomize</button>
+            <button class="btn ghost" type="button" id="reset">Reset</button>
+          </div>
+        </aside>
+
+        <section class="preview-wrap glass">
+          <p class="panel-kicker">Live preview</p>
+
+          <div class="preview" id="tokenPreview">
+            <div class="token-surface" id="tokenSurface">
+              <div class="token-row token-row--colors">
+                <span class="token-chip" data-role="accent">Accent</span>
+                <span class="token-chip" data-role="surface">Surface</span>
+                <span class="token-chip" data-role="muted">Muted</span>
+              </div>
+              <div class="token-row token-row--space" id="spacePills">
+                <span class="space-pill" data-step="1">1</span>
+                <span class="space-pill" data-step="2">2</span>
+                <span class="space-pill" data-step="3">3</span>
+                <span class="space-pill" data-step="4">4</span>
+              </div>
+              <div class="token-row token-row--type">
+                <p class="type-xl">Display heading</p>
+                <p class="type-md">Body copy that respects your spacing and color tokens.</p>
+                <p class="type-sm">Secondary · @curedoktore</p>
+              </div>
+              <div class="token-row token-row--card">
+                <div class="mini-card">
+                  <span class="mini-card__title">Card</span>
+                  <span class="mini-card__meta">Shadow + radius</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="output-tabs" role="tablist" aria-label="Export format">
+            <button type="button" class="tab is-active" data-tab="css" role="tab" aria-selected="true">CSS</button>
+            <button type="button" class="tab" data-tab="json" role="tab" aria-selected="false">JSON</button>
+          </div>
+
+          <div class="code-box">
+            <code id="code-output" class="code-block"></code>
+            <button class="btn copy-btn" type="button" id="copy-btn">Copy</button>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 10 — Glassmorphism Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <main class="app">
+      <header class="topbar glass">
+        <div class="topbar__left">
+          <p class="day-tag">Day 10/30</p>
+          <h1>Glassmorphism generator</h1>
+          <p class="handle">@curedoktore</p>
+        </div>
+        <img class="x-logo" src="../x-logo.jpg" alt="X logo" />
+      </header>
+
+      <section class="layout">
+        <aside class="panel glass">
+          <p class="panel-kicker">Controls</p>
+
+          <div class="controls">
+            <label class="field">
+              Blur (px)
+              <input id="blur" type="range" min="6" max="34" value="18" />
+              <span class="value" id="blur-value">18px</span>
+            </label>
+
+            <label class="field">
+              Glass alpha
+              <input id="glass-alpha" type="range" min="0.04" max="0.22" step="0.01" value="0.11" />
+              <span class="value" id="glass-alpha-value">0.11</span>
+            </label>
+
+            <label class="field">
+              Border width (px)
+              <input id="border-width" type="range" min="1" max="3" step="1" value="1" />
+              <span class="value" id="border-width-value">1px</span>
+            </label>
+
+            <label class="field">
+              Border alpha
+              <input id="border-alpha" type="range" min="0.08" max="0.55" step="0.01" value="0.25" />
+              <span class="value" id="border-alpha-value">0.25</span>
+            </label>
+
+            <label class="field">
+              Radius (px)
+              <input id="radius" type="range" min="12" max="28" step="1" value="18" />
+              <span class="value" id="radius-value">18px</span>
+            </label>
+
+            <label class="field">
+              Accent hue (X blue)
+              <input id="accent-hue" type="range" min="185" max="230" step="1" value="203" />
+              <span class="value" id="accent-hue-value">203</span>
+            </label>
+
+            <label class="field">
+              Highlight intensity
+              <input id="highlight-alpha" type="range" min="0.0" max="0.75" step="0.01" value="0.22" />
+              <span class="value" id="highlight-alpha-value">0.22</span>
+            </label>
+
+            <label class="field">
+              Shadow strength
+              <input id="shadow-strength" type="range" min="0.25" max="0.9" step="0.01" value="0.62" />
+              <span class="value" id="shadow-strength-value">0.62</span>
+            </label>
+          </div>
+
+          <div class="actions">
+            <button class="btn" type="button" data-preset="x-neon">X Neon preset</button>
+            <button class="btn" type="button" data-preset="soft-ice">Soft Ice preset</button>
+            <button class="btn" type="button" data-preset="aurora">Aurora preset</button>
+          </div>
+
+          <div class="actions actions--second">
+            <button class="btn ghost" type="button" id="randomize">Randomize</button>
+            <button class="btn ghost" type="button" id="reset">Reset</button>
+          </div>
+        </aside>
+
+        <section class="preview-wrap glass">
+          <p class="panel-kicker">Preview</p>
+
+          <div class="preview" id="preview">
+            <div class="glass-card" id="glassCard" role="group" aria-label="Generated glass card preview">
+              <div class="glass-card__top">
+                <span class="pill">X Glass</span>
+                <span class="tiny-dot" aria-hidden="true"></span>
+              </div>
+              <div class="glass-card__body">
+                <h3>Neon clarity, smooth edges</h3>
+                <p>
+                  Generate a glass recipe and copy it as CSS. Dial blur, tint and
+                  highlight until it feels like X.
+                </p>
+                <div class="glass-card__cta">
+                  <button class="cta-btn" type="button">Try it</button>
+                  <span class="cta-tag">Built for reach</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass-mini">
+              <div class="glass-mini__row">
+                <span>Glass</span>
+                <strong id="summary-glass">0.11</strong>
+              </div>
+              <div class="glass-mini__row">
+                <span>Border</span>
+                <strong id="summary-border">0.25</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="code-box">
+            <code id="css-output"></code>
+            <button class="btn copy-btn" type="button" id="copy-btn">Copy CSS</button>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
+

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern X Landing Hero</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <main class="page">
+      <header class="topbar">
+        <div class="brand">
+          <img src="../x-logo.jpg" alt="X logo" class="brand__logo" />
+          <div class="brand__text">
+            <span class="brand__kicker">Day 7 / 30 Days</span>
+            <h1 class="brand__title">Modern X Landing</h1>
+          </div>
+        </div>
+        <nav class="nav">
+          <a href="#" class="nav__link is-active">Overview</a>
+          <a href="#" class="nav__link">Features</a>
+          <a href="#" class="nav__link">Pricing</a>
+          <button class="nav__cta" type="button">Get access</button>
+        </nav>
+      </header>
+
+      <section class="hero" aria-labelledby="hero-title" id="hero">
+        <div class="hero__collapse-wrap" id="heroCollapseWrap">
+          <div class="hero__content">
+            <p class="hero__eyebrow">X-native growth, creator-first</p>
+            <h2 id="hero-title" class="hero__title">
+              Ship content that looks like it belongs on X.
+            </h2>
+            <p class="hero__subtitle">
+              Design landing experiences with the same sharp contrast, subtle glow and speed
+              you get inside the X app—no bloated templates, just focused UI.
+            </p>
+
+            <form class="hero__form" novalidate>
+              <label class="field">
+                <span class="field__label">Workspace handle</span>
+                <div class="field__control">
+                  <span class="field__prefix">@</span>
+                  <input
+                    type="text"
+                    name="handle"
+                    placeholder="curedoktore"
+                    value="curedoktore"
+                    aria-label="Workspace handle"
+                  />
+                </div>
+              </label>
+
+              <button class="hero__cta" type="button" id="heroCta">
+                <span class="hero__cta-text">Launch your X hero</span>
+                <span class="hero__cta-glow" aria-hidden="true"></span>
+              </button>
+
+              <p class="hero__meta">
+                <span class="dot"></span>
+                <span>Built by <strong>@curedoktore</strong> • X-style landing page hero</span>
+              </p>
+            </form>
+
+            <div class="hero__chips" aria-label="Highlights">
+              <button type="button" class="chip">X-first motion</button>
+              <button type="button" class="chip">Dark mode native</button>
+              <button type="button" class="chip">Landing hero only</button>
+              <button type="button" class="chip chip--highlight" data-handle="@curedoktore">@curedoktore</button>
+            </div>
+          </div>
+
+          <aside class="hero__preview" aria-label="Live X-style preview">
+            <div class="preview-card">
+              <header class="preview-card__header">
+                <div class="preview-card__user">
+                  <div class="avatar">
+                    <img src="../x-logo.jpg" alt="" class="avatar__img" />
+                  </div>
+                  <div>
+                    <div class="preview-card__name">cure dok</div>
+                    <div class="preview-card__handle">@curedoktore</div>
+                  </div>
+                </div>
+                <button class="preview-card__follow" type="button" aria-pressed="false">Follow</button>
+              </header>
+
+              <div class="preview-card__body">
+                <p class="preview-card__text">
+                  Day 7 of my 30 days challenge: a modern landing page hero with pure X energy.
+                </p>
+                <p class="preview-card__subtext">
+                  Dark glass, neon edge, and a hero that feels like home on the timeline.
+                </p>
+              </div>
+
+              <footer class="preview-card__footer">
+                <div class="metrics">
+                  <span>24 Reposts</span>
+                  <span>132 Likes</span>
+                  <span>3 Bookmarks</span>
+                </div>
+                <span class="preview-card__tag">#30DaysOfCode</span>
+              </footer>
+            </div>
+          </aside>
+        </div>
+
+        <div class="hero__blackhole" id="heroBlackhole" aria-hidden="true"></div>
+
+        <div class="hero__success" id="heroSuccess" aria-hidden="true">
+          <p class="hero__success-text">Follow <strong>@curedoktore</strong> on X</p>
+          <a href="https://x.com/curedoktore" target="_blank" rel="noopener noreferrer" class="hero__success-cta">Open X profile</a>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <span>7/30 — Modern landing hero • Crafted by @curedoktore</span>
+      </footer>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>
