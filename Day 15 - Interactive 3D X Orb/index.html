@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 15 - Interactive 3D X Orb</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ambient ambient-a"></div>
+  <div class="ambient ambient-b"></div>
+
+  <main class="app">
+    <header class="topbar glass">
+      <div>
+        <p class="day-tag">Day 15/30</p>
+        <h1>Interactive 3D X Orb</h1>
+        <p class="hint">Bela 3D kugla sa crnim tackicama koje beze od kursora.</p>
+      </div>
+      <div class="x-badge" aria-hidden="true">X</div>
+    </header>
+
+    <section class="stage glass" id="stage">
+      <div id="webgl-host" aria-label="Interactive 3D orb"></div>
+      <div class="hud glass">
+        <p><strong>Drag:</strong> rotate orb</p>
+        <p><strong>Hover:</strong> dots run away</p>
+        <p><strong>Wheel:</strong> zoom in/out</p>
+      </div>
+    </section>
+  </main>
+
+  <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+
+  <script defer src="script.js"></script>
+</body>
+</html>

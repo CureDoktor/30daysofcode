@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Developer {
+  id          String       @id @default(cuid())
+  username    String       @unique
+  country     String
+  countryCode String
+  latitude    Float
+  longitude   Float
+  joinedAt    DateTime     @default(now())
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  submissions Submission[]
+}
+
+model Submission {
+  id                  String           @id @default(cuid())
+  rawText             String
+  source              String           @default("x-comment")
+  sourceRef           String?
+  detectedCountry     String?
+  detectedCountryCode String?
+  latitude            Float?
+  longitude           Float?
+  status              SubmissionStatus @default(PENDING)
+  createdAt           DateTime         @default(now())
+  developerId         String?
+  developer           Developer?       @relation(fields: [developerId], references: [id], onDelete: SetNull)
+}
+
+enum SubmissionStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}
