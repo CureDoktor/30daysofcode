@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 17 - Cursor Trail Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="trail-canvas" aria-hidden="true"></canvas>
+
+  <main class="app">
+    <header class="hero">
+      <p class="tag">Day 17 / Cursor Trail Generator</p>
+      <h1>Hypnotic Cursor Trails</h1>
+      <p class="sub">Smooth glow, dots, and line styles with live controls.</p>
+    </header>
+
+    <section class="panel glass">
+      <div class="row">
+        <label class="field">
+          Trail type
+          <select id="trail-type">
+            <option value="glow">Glow</option>
+            <option value="dots">Dots</option>
+            <option value="line">Line</option>
+          </select>
+        </label>
+
+        <label class="field">
+          Size
+          <input id="size" type="range" min="8" max="60" value="28" />
+        </label>
+      </div>
+
+      <div class="row">
+        <label class="field">
+          Speed
+          <input id="speed" type="range" min="6" max="35" value="18" />
+        </label>
+
+        <label class="field">
+          Fade
+          <input id="fade" type="range" min="2" max="20" value="8" />
+        </label>
+      </div>
+
+      <div class="row">
+        <label class="field">
+          Opacity
+          <input id="opacity" type="range" min="20" max="100" value="85" />
+        </label>
+
+        <label class="field checkbox">
+          <input id="gradient-enabled" type="checkbox" checked />
+          Use gradient
+        </label>
+      </div>
+
+      <div class="row colors">
+        <label class="field">
+          Color A
+          <input id="color-a" type="color" value="#5ee6ff" />
+        </label>
+        <label class="field">
+          Color B
+          <input id="color-b" type="color" value="#b86bff" />
+        </label>
+      </div>
+
+      <div class="actions">
+        <button class="btn" id="demo-btn">Demo mode: Off</button>
+        <button class="btn ghost" id="copy-btn">Copy CSS / Code</button>
+        <button class="btn ghost" id="share-btn">Share this effect</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

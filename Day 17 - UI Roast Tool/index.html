@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 17 - UI Roast Tool</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ambient ambient-a"></div>
+  <div class="ambient ambient-b"></div>
+
+  <main class="app">
+    <header class="topbar glass">
+      <div>
+        <p class="day-tag">Day 17/30</p>
+        <h1>UI Roast Tool</h1>
+        <p class="hint">Upload a UI screenshot and get instant score + feedback.</p>
+      </div>
+      <div class="x-badge" aria-hidden="true">X</div>
+    </header>
+
+    <section class="layout">
+      <section class="panel glass left-panel">
+        <p class="panel-kicker">Input</p>
+
+        <label class="dropzone" id="dropzone" for="file-input">
+          <input id="file-input" type="file" accept="image/*" />
+          <p class="drop-title">Drop your UI screenshot here</p>
+          <p class="drop-sub">or click to browse image</p>
+        </label>
+
+        <div class="controls">
+          <label class="field">
+            Roast tone
+            <select id="tone">
+              <option value="friendly">Friendly</option>
+              <option value="savage">Savage</option>
+            </select>
+          </label>
+          <label class="field">
+            Product type
+            <select id="product-type">
+              <option value="landing">Landing page</option>
+              <option value="dashboard">Dashboard</option>
+              <option value="mobile">Mobile app screen</option>
+              <option value="ecommerce">E-commerce page</option>
+              <option value="other">Other UI</option>
+            </select>
+          </label>
+        </div>
+
+        <button class="btn" id="roast-btn" disabled>Roast My UI</button>
+        <p class="action-status" id="action-status">Upload screenshot to unlock roast.</p>
+      </section>
+
+      <section class="panel glass preview-panel">
+        <p class="panel-kicker">Preview</p>
+        <div class="preview-wrap">
+          <img id="preview-image" alt="UI preview" />
+          <p class="placeholder" id="preview-placeholder">No screenshot yet</p>
+        </div>
+      </section>
+
+      <section class="panel glass result-panel">
+        <p class="panel-kicker">Result</p>
+        <div class="loading-overlay" id="loading-overlay" hidden>
+          <div class="loader-core"></div>
+          <p id="loading-text">Analyzing UI patterns...</p>
+        </div>
+        <div class="score-hero">
+          <div class="score-ring" id="score-ring">--</div>
+          <div>
+            <h2 id="verdict">Waiting for your UI</h2>
+            <p id="summary">Upload screenshot to get roast and actionable tips.</p>
+          </div>
+        </div>
+
+        <div class="metrics" id="metrics"></div>
+
+        <div class="feedback-box">
+          <h3>Feedback</h3>
+          <ul id="feedback-list"></ul>
+        </div>
+
+        <div class="roast-box" id="roast-box">Your roast will appear here.</div>
+      </section>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
