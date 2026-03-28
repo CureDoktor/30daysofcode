@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 18 - Reality Bending UI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="scene" id="scene">
+    <div class="floating-panel" aria-hidden="true"></div>
+
+    <section class="hero glass" id="hero">
+      <div class="liquid-overlay" aria-hidden="true"></div>
+
+      <h1 class="headline split-text" id="headline">Reality Bending UI</h1>
+      <p class="subline split-text" id="subline">
+        Liquid glass interface that melts and stretches around your cursor.
+      </p>
+
+      <div class="actions">
+        <button class="liquid-btn primary" data-btn>
+          <span class="btn-label">Enter Distortion</span>
+          <span class="ripple"></span>
+        </button>
+        <button class="liquid-btn ghost" data-btn>
+          <span class="btn-label">View Simulation</span>
+          <span class="ripple"></span>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+  <div class="cursor-ghost ghost-a" id="cursor-ghost-a" aria-hidden="true"></div>
+  <div class="cursor-ghost ghost-b" id="cursor-ghost-b" aria-hidden="true"></div>
+  <div class="burst-layer" id="burst-layer" aria-hidden="true"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
