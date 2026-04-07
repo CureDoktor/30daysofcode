@@ -1,6 +1,6 @@
-import { EnergySwitchingHero } from "@/components/day20/energy-switching-hero";
+import { AIReactiveCursorField } from "@/components/day20/ai-reactive-cursor-field";
 
 export default function Day20Page() {
-  return <EnergySwitchingHero />;
+  return <AIReactiveCursorField />;
 }
 
